@@ -20,23 +20,23 @@ const getSucculent = async () => {
 //Crear un producto 
 
 const createSucculent = async (
-  nombre,
+  name,
   familia,
   tipo,
   reproduccion,
   distribucion,
-  precio,
+  price,
   url
 ) => {
   const consulta =
-    "INSERT INTO inventory (nombre, familia, tipo, reproduccion, distribucion, precio, imagen) VALUES ($1, $2, $3 ,$4, $5, $6, $7) RETURNING *";
+    "INSERT INTO inventory (name, familia, tipo, reproduccion, distribucion, price, imagen) VALUES ($1, $2, $3 ,$4, $5, $6, $7) RETURNING *";
   const values = [
-    nombre,
+    name,
     familia,
     tipo,
     reproduccion,
     distribucion,
-    precio,
+    price,
     url,
   ];
   const result = await pool.query(consulta, values);
@@ -74,7 +74,7 @@ const deleteSucculent = async (payload) => {
 const updateSucu = async (payload) => {
   const query = {
     text: "UPDATE inventory SET likes = $1 WHERE id = $2 RETURNING *",
-    values: [payload.nombre, payload.id],
+    values: [payload.name, payload.id],
   };
   try {
     const result = await pool.query(query);

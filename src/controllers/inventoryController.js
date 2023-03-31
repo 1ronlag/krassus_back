@@ -8,46 +8,58 @@ const {
 const { showError } = require("../helpers/showError");
 
 //GET//
+
 const getAllSucculent = async (req, res) => {
   try {
-    const queryString = req.query;
-    const succulents = await getSucculent(queryString);
-    const HATEOAS = await prepararHATEOAS(succulents);
-    res.json(HATEOAS);
+      const posts = await getSucculent();
+      res.json(posts);
   } catch (e) {
-    console.log(e);
-    res.status(400).json({ message: "Error al obtener los datos solicitados" });
-  }
-};
+      console.log(e);
+      res
+          .status(500)
+          .json({ message: 'Error al obtener los datos' });
+        }
+      }
+// const getAllSucculent = async (req, res) => {
+//   try {
+//     const queryString = req.query;
+//     const succulents = await getSucculent(queryString);
+//     const HATEOAS = await prepararHATEOAS(succulents);
+//     res.json(HATEOAS);
+//   } catch (e) {
+//     console.log(e);
+//     res.status(400).json({ message: "Error al obtener los datos solicitados BACK" });
+//   }
+// };
 
-const prepararHATEOAS = (succulents) => {
-  const results = succulents.map((j) => {
-    return {
-      name: j.nombre,
-      href: `succulents/succulent/${j.id}`,
-    };
-  });
+// const prepararHATEOAS = (succulents) => {
+//   const results = succulents.map((j) => {
+//     return {
+//       name: j.name,
+//       href: `succulents/succulent/${j.id}`,
+//     };
+//   });
 
-  const total = succulents.length;
-  const HATEOAS = {
-    total,
-    results,
-  };
-  return HATEOAS;
-};
+//   const total = succulents.length;
+//   const HATEOAS = {
+//     total,
+//     results,
+//   };
+//   return HATEOAS;
+// };
 
 //POST - CREAR PRODUCTO NUEVO
 const createProduct = async (req, res) => {
   try {
-    const { nombre, familia, tipo, reproduccion, distribucion, precio, url } =
+    const { name, familia, tipo, reproduccion, distribucion, price, url } =
       req.body;
     const newProduct = await createSucculent(
-      nombre,
+      name,
       familia,
       tipo,
       reproduccion,
       distribucion,
-      precio,
+      price,
       url
     );
     res.status(201).json(newProduct);
@@ -63,7 +75,7 @@ const updateSucuById = async (req, res) => {
   payload.id = id;
   try {
     const foundSucu = await findSucu(id);
-    payload.nombre = foundSucu[0];
+    payload.name = foundSucu[0];
     if (foundSucu.length === 0) {
       console.log("Producto no encontrado");
       return res.status(404).json({ message: "Producto no encontrado" });
