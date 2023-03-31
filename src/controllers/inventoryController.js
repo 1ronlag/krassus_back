@@ -20,33 +20,7 @@ const getAllSucculent = async (req, res) => {
           .json({ message: 'Error al obtener los datos' });
         }
       }
-// const getAllSucculent = async (req, res) => {
-//   try {
-//     const queryString = req.query;
-//     const succulents = await getSucculent(queryString);
-//     const HATEOAS = await prepararHATEOAS(succulents);
-//     res.json(HATEOAS);
-//   } catch (e) {
-//     console.log(e);
-//     res.status(400).json({ message: "Error al obtener los datos solicitados BACK" });
-//   }
-// };
 
-// const prepararHATEOAS = (succulents) => {
-//   const results = succulents.map((j) => {
-//     return {
-//       name: j.name,
-//       href: `succulents/succulent/${j.id}`,
-//     };
-//   });
-
-//   const total = succulents.length;
-//   const HATEOAS = {
-//     total,
-//     results,
-//   };
-//   return HATEOAS;
-// };
 
 //POST - CREAR PRODUCTO NUEVO
 const createProduct = async (req, res) => {
