@@ -4,8 +4,9 @@ require('dotenv').config()
 const pool = new Pool({
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
-    password: process.env.PASS,
+    password: process.env.PGPASSWORD,
     database: process.env.DB_NAME,
+        
     allowExitOnIdle: true
 });
 
