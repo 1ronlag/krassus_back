@@ -10,11 +10,12 @@ const { showError } = require("../helpers/showError");
 //GET//
 
 const getAllSucculent = async (req, res) => {
+  
   try {
       const posts = await getSucculent();
       res.json(posts);
   } catch (e) {
-      console.log(e);
+      console.log();
       res
           .status(500)
           .json({ message: 'Error al obtener los datos' });
