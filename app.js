@@ -1,7 +1,7 @@
 const app = require('./server')
 
-app.use('/', require('./src/routes/sessionRoutes'))
-app.use('/', require('./src/routes/userRoutes'))
-app.use('/', require('./src/routes/inventoryRoutes'))
+app.use('/session', require('./src/routes/sessionRoutes'))
+app.use('/user', require('./src/routes/userRoutes'))
+app.use('/invent', require('./src/routes/inventoryRoutes'))
 
 module.exports = app    
