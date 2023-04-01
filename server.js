@@ -12,7 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 
-const PORT = 8080;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server encendido en puerto ${PORT}`);
 });
