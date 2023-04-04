@@ -3,20 +3,18 @@ const bcrypt = require("bcryptjs");
 
 //Login - FUNCIONA// - GET
 
-const getUser = async (email, password) => {
-    const consulta = "SELECT * FROM users WHERE email = $1";
-    const values = [email];
-    const result = await pool.query(consulta, values);
-    const rowCount = result.rowCount;
-    console.log("result.rowCount", rowCount);
-
-    if (!rowCount)
-      throw {
-        code: 404,
-        message: "No se encontró ningún usuario con estas credenciales",
-      };
-    return result.rows;
+const getUser = async () => {
+  SQLquery = {
+    text: "SELECT * FROM users",
   };
+  try {
+    const result = await pool.query(SQLquery);
+    return result.rows;
+  } catch (e) {
+    console.log("error al obtener  datos de la tabla user", e.code, e.message);
+    throw newError(e);
+  }
+};
 
 //Crear usuario  - //  POST
 
