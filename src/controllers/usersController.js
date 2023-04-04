@@ -7,17 +7,9 @@ const {
 } = require("../models/usersModel");
 const { showError } = require("../helpers/showError");
 
-//TRAER EL USUARIO
-// const getProfiles = async (req, res) => {
-//   try {
-//     const email = req.user["email"];
-//     const resp = await getUser(email);
-//     res.json(resp);
-//   } catch (error) {
-//     res.status(500).json({ message: "Error al obtener los datos" });
-//   }
-// };
 
+
+//TRAER EL USUARIO
 const getProfiles = async (req, res) => {
   
   try {
@@ -30,6 +22,18 @@ const getProfiles = async (req, res) => {
           .json({ message: 'Error al obtener los datos' });
         }
       }
+
+
+//TRAER EL USUARIO
+// const getProfiles = async (req, res) => {
+//   try {
+//     const email = req.user["email"];
+//     const resp = await getUser(email);
+//     res.json(resp);
+//   } catch (error) {
+//     res.status(500).json({ message: "Error al obtener los datos" });
+//   }
+// };
 
 
 //CREAR NUEVO USUARIO
